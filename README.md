@@ -49,7 +49,7 @@ touch config
 ### config file content:
 ```
 TELEGRAM_TOKEN=<your bot's token>
-STOCKFISH=/path/to/stockfish/bin/stockfish
+STOCKFISH=/path/to/bin/stockfish
 ```
 
 ### run
