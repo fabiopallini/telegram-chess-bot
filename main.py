@@ -16,6 +16,7 @@ STOCKFISH = None
 offset = 0
 session = None
 DEBUG_PGN = None
+TIMEOUT = 3 
 
 def main():
 	global session
@@ -50,7 +51,13 @@ def main():
 							params = {
 								'commands': json.dumps(get_menu_buttons())
 							}
-							response = requests.get(base_url, params=params)
+							while True:
+								try:
+									response = requests.get(base_url, params=params, timeout=TIMEOUT)
+									break
+								except Exception as e:
+									print(e)
+									time.sleep(3)
 							send_message(user_id, "bot started")
 
 						if text == "/newgame_computer":
@@ -100,7 +107,6 @@ def main():
 							if (user_id == game.player_1 and board.turn == chess.WHITE) or (user_id == game.player_2 and board.turn == chess.BLACK):
 								if validate_str_move(text):
 									move_result = chess_move(board, game, user_id, text)								
-
 									status = check_game_status(board)
 									if status != "ok": # partita terminata
 										send_message(game.player_1, status)
@@ -131,21 +137,32 @@ def main():
 
 def send_photo(user_id, photo_url, local_file):
 	if user_id != None:
-		if local_file == False:
-			url = f"{BOT_URL}/sendPhoto?chat_id={user_id}&photo={photo_url}"
-			r = requests.get(url)
-			#print('send_photo response')
-			#print(r.json())
-		else:
-			url = f"{BOT_URL}/sendPhoto?chat_id={user_id}"
-			files = {'photo': open(photo_url, 'rb')}
-			r = requests.get(url, files=files)
-			json = r.json()
-			#print('send_photo response')
-			#print(json)
-			if len(json['result']) > 0:
-				result = json['result']
-				db_add_BotMessage(session, result['chat']['id'], result['message_id'])
+		while True:
+			if local_file == False:
+				url = f"{BOT_URL}/sendPhoto?chat_id={user_id}&photo={photo_url}"
+				try:
+					r = requests.get(url, timeout=TIMEOUT)
+					#print('send_photo response')
+					#print(r.json())
+					break
+				except Exception as e:
+					print(e)
+					time.sleep(3)
+			else:
+				url = f"{BOT_URL}/sendPhoto?chat_id={user_id}"
+				files = {'photo': open(photo_url, 'rb')}
+				try:
+					r = requests.get(url, files=files, timeout=TIMEOUT)
+					json = r.json()
+					#print('send_photo response')
+					#print(json)
+					if len(json['result']) > 0:
+						result = json['result']
+						db_add_BotMessage(session, result['chat']['id'], result['message_id'])
+					break
+				except Exception as e:
+					print(e)
+					time.sleep(3)
 
 def send_message(user_id, text):
 	if user_id != None:
@@ -155,13 +172,19 @@ def send_message(user_id, text):
 			"parse_mode": "HTML"
 		}
 		url = f"{BOT_URL}/sendMessage"
-		r = requests.get(url, params=params)
-		json = r.json()
-		#print('send_message response')
-		#print(json)
-		if len(json['result']) > 0:
-			result = json['result']
-			db_add_BotMessage(session, result['chat']['id'], result['message_id'])
+		while True:
+			try:
+				r = requests.get(url, params=params, timeout=TIMEOUT)
+				json = r.json()
+				#print('send_message response')
+				#print(json)
+				if len(json['result']) > 0:
+					result = json['result']
+					db_add_BotMessage(session, result['chat']['id'], result['message_id'])
+				break
+			except Exception as e:
+				print(e)
+				time.sleep(3)
 
 def delete_message(chat_id, message_id):
 	delete_url = f"{BOT_URL}/deleteMessage"
@@ -169,12 +192,24 @@ def delete_message(chat_id, message_id):
 		'chat_id': chat_id,
 		'message_id': message_id
 	}
-	response = requests.get(delete_url, params=params)
+	while True:
+		try:
+			response = requests.get(delete_url, params=params, timeout=TIMEOUT)
+			break
+		except Exception as e:
+			print(e)
+			time.sleep(3)
 
 def send_reply(user_id, reply_id, text):
 	url = f"{BOT_URL}/sendMessage?chat_id={user_id}&reply_to_message_id={reply_id}&text={text}"
-	r = requests.get(url)
-	print(r.json())	
+	while True:
+		try:
+			r = requests.get(url, timeout=TIMEOUT)
+			print(r.json())	
+			break
+		except Exception as e:
+			print(e)
+			time.sleep(3)
 	
 def get_updates():
 	global offset
@@ -182,16 +217,20 @@ def get_updates():
 		url = f"{BOT_URL}/getUpdates"
 	else:
 		url = f"{BOT_URL}/getUpdates?offset={offset}"
-		
-	r = requests.get(url)
-	content = r.json()
-	# se ci sono nuovi messaggi prendo l'ultimo update_id e aumento l'offset di 1, per riuscire sempre a prendere gli ultimi 100 messaggi.
-	# telegram non restituisce più di 100 messaggi per volta, bisogna passargli un offset 
-	if len(content['result']) > 0:
-		update_id = content['result'][-1]['update_id']
-		offset = update_id + 1
-		print(content)
-	return content		
+	while True:
+		try:
+			r = requests.get(url, timeout=TIMEOUT)
+			content = r.json()
+			# se ci sono nuovi messaggi prendo l'ultimo update_id e aumento l'offset di 1, per riuscire sempre a prendere gli ultimi 100 messaggi.
+			# telegram non restituisce più di 100 messaggi per volta, bisogna passargli un offset 
+			if len(content['result']) > 0:
+				update_id = content['result'][-1]['update_id']
+				offset = update_id + 1
+				print(content)
+			return content		
+		except Exception as e:
+			print(f"get update error: {e}")
+			time.sleep(3)
 
 def clear_bot_messages(session, user_id):
 	botmessages = db_get_botmessages(session, user_id)
