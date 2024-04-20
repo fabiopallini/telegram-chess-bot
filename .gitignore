@@ -1,0 +1,10 @@
+.DS_Store
+venv
+data
+*.db
+__pycache__
+config
+Session.vim
+alembic
+alembic.ini
+*.pdf
