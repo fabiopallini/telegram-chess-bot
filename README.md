@@ -11,6 +11,8 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+***
+
 ## install stockfish
 
 ### MAC
@@ -28,6 +30,8 @@ sudo apt-get install stockfish
 ```
 sudo dnf install stockfish
 ```
+
+***
 
 launch the command to find the path where stockfish is installed
 ```
@@ -56,6 +60,8 @@ STOCKFISH=/path/to/bin/stockfish
 python3 main.py
 ```
 
+***
+
 ### how to play
 once you have created your bot with BotFather, start the bot with `/start` command
  
@@ -81,9 +87,11 @@ the opponent may accept the game with this command
 ```
 stop the current game, and giveup!
 
-![chess](https://github.com/fabiopallini/telegram-chess-bot/assets/8449266/ce931cb4-7428-4338-9c24-dabbe6003d5b)
-
 ```
 /rmlobby
 ```
 Once you have created a new game with a secret code using the /newgame command, and you are waiting for your opponent to accept the game, you may need to cancel this game and make the secret code no longer usable with this command.
+
+***
+
+![chess](https://github.com/fabiopallini/telegram-chess-bot/assets/8449266/ce931cb4-7428-4338-9c24-dabbe6003d5b)
