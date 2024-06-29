@@ -56,3 +56,33 @@ STOCKFISH=/path/to/bin/stockfish
 ```
 python3 main.py
 ```
+
+### how to play
+once you have created your bot with BotFather, start the bot with `/start` command
+ 
+# available commands
+
+```
+/newgame_computer
+```
+creates a new game against stockfish
+
+```
+/newgame
+```
+creates a new game with a secret code to give to your opponent   
+
+```
+/newgame <secret code>
+```
+the opponent may accept the game with this command
+
+```
+/stopgame
+```
+stop the current game, and giveup!
+
+```
+/rmlobby
+```
+Once you have created a new game with a secret code using the /newgame command, and you are waiting for your opponent to accept the game, you may need to cancel this game and make the secret code no longer usable with this command.
