@@ -1,32 +1,32 @@
 # installation guide
 
-## virtualenv (optional)
+### virtualenv (optional)
 ```
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-## install dependencies
+### install dependencies
 ```
 pip install -r requirements.txt
 ```
 
 ***
 
-## install stockfish
+### install stockfish
 
-### MAC
+MAC
 ```
 brew install stockfish
 ```
 
-### Ubuntu Linux
+Ubuntu Linux
 ```
 sudo apt-get install stockfish
 
 ```
 
-### Fedora Linux 
+Fedora Linux 
 ```
 sudo dnf install stockfish
 ```
@@ -49,7 +49,7 @@ python3 main.py --migrate
 touch config
 ```
 
-### config file content:
+config file content:
 ```
 TELEGRAM_TOKEN=<your bot's token>
 STOCKFISH=/path/to/bin/stockfish
@@ -62,11 +62,9 @@ python3 main.py
 
 ***
 
-### how to play
+### how to play && available commands
 once you have created your bot with BotFather, start the bot with `/start` command
  
-### available commands
-
 ```
 /newgame_computer
 ```
