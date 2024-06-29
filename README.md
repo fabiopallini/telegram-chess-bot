@@ -1,4 +1,4 @@
-### installation guide
+# installation guide
 
 ## virtualenv (optional)
 ```
@@ -11,29 +11,28 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### install stockfish
+## install stockfish
 
-## MAC ###
+### MAC
 ```
 brew install stockfish
 ```
 
-## Ubuntu Linux
+### Ubuntu Linux
 ```
 sudo apt-get install stockfish
 
 ```
 
-## Fedora Linux 
+### Fedora Linux 
 ```
 sudo dnf install stockfish
 ```
 
-launch the command 
+launch the command to find the path where stockfish is installed
 ```
 which stockfish 
 ```
-to find the path where stockfish is installed
 
 ### migrate database
 launch with --migrate parameter only when you change the database model in db.py
