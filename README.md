@@ -31,12 +31,12 @@ sudo apt-get install stockfish
 sudo dnf install stockfish
 ```
 
-***
-
 launch the command to find the path where stockfish is installed
 ```
 which stockfish 
 ```
+
+***
 
 ### migrate database
 launch with --migrate parameter only when you change the database model in db.py
