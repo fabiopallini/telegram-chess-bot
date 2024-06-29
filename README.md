@@ -64,6 +64,15 @@ python3 main.py
 
 ### how to play && available commands
 once you have created your bot with BotFather, start the bot with `/start` command
+
+write in the message box the move you want to do, examples:
+
+- Move the king from e1 to e2: Ke2
+- Move the queen from d1 to f3: Qf3
+- Move the rook from a1 to d1: Rd1
+- Move the bishop from f1 to g2: Bg2
+- Move the knight from b1 to c3: Nc3
+- Move the pawn from e2 to e4: e4
  
 ```
 /newgame_computer
