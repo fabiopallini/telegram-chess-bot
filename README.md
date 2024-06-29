@@ -60,7 +60,7 @@ python3 main.py
 ### how to play
 once you have created your bot with BotFather, start the bot with `/start` command
  
-# available commands
+### available commands
 
 ```
 /newgame_computer
