@@ -81,6 +81,8 @@ the opponent may accept the game with this command
 ```
 stop the current game, and giveup!
 
+![chess](https://github.com/fabiopallini/telegram-chess-bot/assets/8449266/ce931cb4-7428-4338-9c24-dabbe6003d5b)
+
 ```
 /rmlobby
 ```
