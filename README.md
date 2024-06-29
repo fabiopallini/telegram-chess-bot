@@ -65,15 +65,6 @@ python3 main.py
 ### how to play && available commands
 once you have created your bot with BotFather, start the bot with `/start` command
 
-write in the message box the move you want to do, examples:
-
-- Move the king from e1 to e2: Ke2
-- Move the queen from d1 to f3: Qf3
-- Move the rook from a1 to d1: Rd1
-- Move the bishop from f1 to g2: Bg2
-- Move the knight from b1 to c3: Nc3
-- Move the pawn from e2 to e4: e4
- 
 ```
 /newgame_computer
 ```
@@ -98,6 +89,18 @@ stop the current game, and giveup!
 /rmlobby
 ```
 Once you have created a new game with a secret code using the /newgame command, and you are waiting for your opponent to accept the game, you may need to cancel this game and make the secret code no longer usable with this command.
+
+***
+
+### move examples
+write in the message box the move you want to do
+
+- Move the king from e1 to e2: Ke2
+- Move the queen from d1 to f3: Qf3
+- Move the rook from a1 to d1: Rd1
+- Move the bishop from f1 to g2: Bg2
+- Move the knight from b1 to c3: Nc3
+- Move the pawn from e2 to e4: e4
 
 ***
 
